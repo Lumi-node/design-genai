@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.png" alt="DesignGenAI" width="900">
+  <img src="assets/hero.jpg" alt="DesignGenAI" width="900">
 </p>
 
 <h1 align="center">DesignGenAI</h1>
