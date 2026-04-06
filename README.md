@@ -58,15 +58,15 @@ The system follows a clear pipeline:
 
 ```mermaid
 graph TD
-    A[Design JSONs] --> B(dataset_builder.py);
-    B --> C{Training Data};
-    C --> D(train.py / ANE Trainer);
-    D --> E[Trained Model (model.py)];
-    F[User Input: --type] --> G(generate.py);
-    E --> G;
-    G --> H[JSON Component Vector];
-    H --> I[HTML Converter];
-    I --> J[Final HTML Output];
+    A[Design JSONs] --> B[dataset_builder.py]
+    B --> C[Training Data]
+    C --> D[train.py / ANE Trainer]
+    D --> E[Trained Model]
+    F[User Input] --> G[generate.py]
+    E --> G
+    G --> H[JSON Component Vector]
+    H --> I[HTML Converter]
+    I --> J[Final HTML Output]
 ```
 
 ## API Reference
