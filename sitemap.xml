@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/architecture/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/contributing/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/reference/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/research/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/getting-started/installation/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+    <url>
+         <loc>https://lumi-node.github.io/design-genai/getting-started/quick-start/</loc>
+         <lastmod>2026-04-06</lastmod>
+    </url>
+</urlset>
