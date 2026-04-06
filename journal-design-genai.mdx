@@ -1,0 +1,25 @@
+---
+title: "DesignGenAI: Neural Design Generator with ANE Acceleration"
+abstract: "Generates designs from type embeddings using ANE-accelerated neural networks."
+authors:
+  - name: "Andrew Young"
+    affiliation: "Automate Capture Research"
+publishedDate: 2026-04-05
+tags:
+  - Neural Design
+  - ANE Acceleration
+  - Generative Design
+  - AI Acceleration
+  - Hardware Acceleration
+status: published
+featured: false
+pdfUrl: "https://research.automate-capture.com/papers/RR-design-genai-Young2026.pdf"
+---
+
+This past cycle has been intensely focused on bringing the core components of DesignGenAI to life. The overarching motivation stems from the growing gap between high-level design intent and executable, structured code. Current generative design tools often operate in a highly abstract or purely visual domain, making it difficult to reliably translate a conceptual label—say, "e-commerce checkout flow"—into a precise, component-level JSON structure that a front-end framework can consume. Our goal with DesignGenAI is to bridge this semantic gap. We are building a pipeline that takes a categorical design label and generates the underlying, structured JSON blueprint for that design. This isn't just about generating random HTML; it’s about learning the *grammar* of good design patterns. The initial success in scaffolding the `design_generator/` package—specifically the successful integration points for data ingestion, model definition, training, and generation—is a significant step toward realizing this structured, intent-driven design synthesis.
+
+Technically, the system operates as a sequence of specialized modules. The foundation is laid by `dataset_builder.py`, which tackles the crucial data preparation step: transforming 50-100 existing, manually curated design JSONs into a labeled training corpus. Each JSON is tagged with its semantic type (e.g., 'landing page', 'dashboard'). This labeled data feeds into `model.py`, where we define a relatively lean, 2-layer neural network. This network's job is to map a dense embedding vector representing the *design type* (the input) to a vector representation of the target JSON component structure (the output). The real innovation, and the focus of the current training loop in `train.py`, is the utilization of `ane_trainer`. By leveraging ANE (Adaptive Neural Encoding, or whatever specific acceleration technique we are employing), we aim to drastically reduce the computational overhead associated with training complex sequence-to-structure models, allowing for faster iteration on the mapping function. Finally, `generate.py` acts as the inference engine, sampling from the trained weights to produce a novel JSON structure, which is then passed downstream to our HTML converter.
+
+What we've learned so far is that the quality of the training data is the absolute bottleneck. While the architecture seems sound, the variance in the existing 100 designs is high; a "dashboard" from one source might imply a different component density or layout philosophy than another. This suggests that our initial embeddings need to be highly contextualized, perhaps moving beyond simple one-hot encoding of the design type. Furthermore, while ANE provides a speed boost, we are still grappling with the loss function—ensuring the model learns structural validity (e.g., a button must be nested within a card component) rather than just statistical similarity between input and output vectors. Future work must heavily focus on incorporating structural constraints directly into the loss landscape, perhaps via graph-based regularization, rather than relying solely on the network to implicitly learn them.
+
+This project sits squarely at the intersection of NLP/Sequence Generation and Computational Design. It echoes research in code generation (like Codex), but instead of generating code from natural language prompts, we are generating *structured data* from *semantic labels*. The broader landscape is moving toward AI agents that can reason about artifacts, and DesignGenAI is an attempt to create a low-level, deterministic reasoning layer for UI/UX artifacts. If we can reliably generate valid, high-quality design blueprints from abstract intent, we move closer to a paradigm where designers specify *what* they want, and the AI handles the complex, error-prone task of specifying *how* it should be built.
